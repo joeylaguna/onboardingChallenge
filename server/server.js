@@ -20,13 +20,14 @@ app.set('port', (process.env.PORT || 5000));
 
 app.use(express.static(__dirname + '/../public'));
 
-app.post('/addUsers/:username/:password', (req, res) => {
+app.post('/addUsers/:username/:password/:email', (req, res) => {
   console.log('fadfdad');
   let username = req.params.username;
   let password = req.params.password;
+  let email = req.params.email;
   bcrypt.genSalt(saltRounds, (err, salt) => {
     bcrypt.hash(password, salt, (err, hash) => {
-      new Users({username: username, password: hash}).save().then((model) => {
+      new Users({username: username, password: hash, email: email}).save().then((model) => {
         res.send(hash);
       })
     })

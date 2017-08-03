@@ -7,10 +7,12 @@ class FormOne extends React.Component {
     super();
     this.state = {
       username: '',
-      password: ''
+      password: '',
+      email: ''
     }
     this.handleUsernameUpdate = this.handleUsernameUpdate.bind(this);
     this.handlePasswordUpdate = this.handlePasswordUpdate.bind(this);
+    this.handleEmailUpdate = this.handleEmailUpdate.bind(this);
     this.handleFormOneSubmit = this.handleFormOneSubmit.bind(this);
   }
   handleUsernameUpdate(e) {
@@ -24,11 +26,18 @@ class FormOne extends React.Component {
       password: e.target.value
     })
   }
+
+  handleEmailUpdate(e) {
+    this.setState({
+      email: e.target.value
+    })
+  }
   
   handleFormOneSubmit() {
     let data = {};
     data.username = this.state.username;
     data.password = this.state.password;
+    data.email = this.state.email;
     this.props.addToUsers(data);
   }
 
@@ -43,6 +52,10 @@ class FormOne extends React.Component {
             <label>
               Password:
               <input value={this.state.password} onChange={this.handlePasswordUpdate} type='password'/>
+            </label>
+            <label>
+              Email:
+              <input value={this.state.email} onChange={this.handleEmailUpdate} type='email'/>
             </label>
           </form>
           <Link to='/formTwo' onClick={this.handleFormOneSubmit}>Form Two</Link>

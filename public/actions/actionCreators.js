@@ -11,10 +11,11 @@ export function addFormOneToDB(newStuff) {
   return dispatch => {
     let username = newStuff.username;
     let password = newStuff.password;
-    axios.post(`/addUsers/${username}/${password}`)
+    let email = newStuff.email
+    axios.post(`/addUsers/${username}/${password}/${email}`)
       .then((response) => {
         console.log(response);
-        dispatch(getUserID(username, response.data));
+        dispatch(getUserID(username, response.data, email));
       })
       .catch((err) => {
         console.log('got an error');
@@ -23,21 +24,22 @@ export function addFormOneToDB(newStuff) {
   }
 }
 
-export function getUserID(username, password) {
+export function getUserID(username, password, email) {
   return dispatch => {
     axios.get(`/getUserID`)
       .then((response) => {
-        dispatch(completeFormOne(username, password, response))
+        dispatch(completeFormOne(username, password, response, email))
       });
   }
 }
 
-export function completeFormOne(username, password, id) {
+export function completeFormOne(username, password, id, email) {
   return {
     type: 'UPDATE_FORM_ONE',
     username,
     password,
-    id
+    id,
+    email
   }
 }
 

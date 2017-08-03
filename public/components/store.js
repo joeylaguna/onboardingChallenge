@@ -7,7 +7,7 @@ import thunk from 'redux-thunk';
 
 
 const defaultState = {
-  formOne: {username: '', password: '', id: '', formOneComplete: false},
+  formOne: {username: '', password: '', email: '', id: '', formOneComplete: false},
   formTwo: {firstName: '', lastName:'', phoneNumber:'', formTwoComplete: false},
   formThree: {address: '', city: '', state: '', zip: '', formThreeComplete: false}
 }
