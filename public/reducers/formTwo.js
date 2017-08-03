@@ -4,7 +4,6 @@ function formTwo(state = {}, action) {
       let firstName = action.firstName;
       let lastName = action.lastName;
       let phoneNumber = action.phoneNumber;
-      console.log(state);
       return Object.assign({}, state, {
         firstName: firstName,
         lastName: lastName,

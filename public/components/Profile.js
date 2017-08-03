@@ -3,7 +3,6 @@ import RaisedButton from 'material-ui/RaisedButton';
 import {List, ListItem} from 'material-ui/List';
 
 const Profile = (props) => {
-  console.log(props)
   let userName = `Username: ${props.formOne.username}`;
   let email = `Email: ${props.formOne.email}`;
   let name = `Name: ${props.formTwo.firstName} ${props.formTwo.lastName}`;

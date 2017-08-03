@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 export function addToUsers(newStuff) {
-  console.log(newStuff);
   return dispatch => {
     dispatch(addFormOneToDB(newStuff));
   }
@@ -14,7 +13,6 @@ export function addFormOneToDB(newStuff) {
     let email = newStuff.email
     axios.post(`/addUsers/${username}/${password}/${email}`)
       .then((response) => {
-        console.log(response);
         dispatch(getUserID(username, response.data, email));
       })
       .catch((err) => {
