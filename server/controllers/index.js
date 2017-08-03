@@ -16,9 +16,11 @@ const Users = bookshelf.Model.extend({
   tableName: 'users'
 });
 
+var pool = new pg.Pool();
+
 module.exports = {
   postFormOne: ((req, res) => {
-    pg.connect(process.env.DATABASE_URL, (err, client, done) => {
+    pool.connect(process.env.DATABASE_URL, (err, client, done) => {
       console.log('in pg connect');
       let username = req.params.username;
       let password = req.params.password;
@@ -29,8 +31,10 @@ module.exports = {
             res.send(hash);
           })
         })
-      }) 
+      })
+      done(); 
     })
+    pool.end();
   }),
   postFormTwo: ((req, res) => {
     let id = req.params.id;
