@@ -10,7 +10,8 @@ import * as actionCreators from './../actions/actionCreators';
 function mapStateToProps(state) {
   return {
     formOne: state.formOne,
-    formTwo: state.formTwo
+    formTwo: state.formTwo,
+    formThree: state.formThree
   }
 }
 

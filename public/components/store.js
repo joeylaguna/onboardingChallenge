@@ -6,7 +6,8 @@ import rootReducer from './../reducers/index';
 
 const defaultState = {
   formOne: {userName: '', password: '', formOneComplete: false},
-  formTwo: {formTwoComplete: false}
+  formTwo: {firstName: '', lastName:'', email:'', formTwoComplete: false},
+  formThree: {address: '', city: '', state: '', zip: '', formThreeComplete: false}
 }
 
 const enhancers = compose(
