@@ -21,7 +21,9 @@ class Content extends React.Component {
             <Card>
               <CardText>
                 <Switch>
-                  <Route exact path='/' component={LandingPage} />
+                  <Route exact path='/' render={(props) => (
+                    <LandingPage {...this.props} />
+                  )}/>
                   <Route path='/formOne' render={(props) => (
                     <FormOne {...this.props} />
                   )}/>
