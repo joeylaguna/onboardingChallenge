@@ -1,9 +1,16 @@
-function formTwo(state = [], action) {
+function formTwo(state = {}, action) {
   switch(action.type) {
     case 'UPDATE_FORM_TWO':
-      return [...state, {
+      let firstName = action.firstName;
+      let lastName = action.lastName;
+      let phoneNumber = action.phoneNumber;
+      console.log(state);
+      return Object.assign({}, state, {
+        firstName: firstName,
+        lastName: lastName,
+        phoneNumber: phoneNumber,
         formTwoComplete: true
-      }];
+      });
     default:
       return state;
   }

@@ -3,10 +3,12 @@ function formOne(state = {}, action) {
     case 'UPDATE_FORM_ONE':
       const username = action.username;
       const password = action.password;
+      let id = action.id
       return Object.assign({}, state, {
         formOneComplete: true,
         username: username,
-        password: password
+        password: password,
+        id: action.id
       });
     default:
       return state;

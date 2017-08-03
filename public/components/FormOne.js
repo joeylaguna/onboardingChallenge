@@ -26,7 +26,10 @@ class FormOne extends React.Component {
   }
   
   handleFormOneSubmit() {
-    this.props.completeFormOne(this.state.username, this.state.password);
+    let data = {};
+    data.username = this.state.username;
+    data.password = this.state.password;
+    this.props.addToUsers(data);
   }
 
   render() {
