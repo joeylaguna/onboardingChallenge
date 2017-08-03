@@ -15,10 +15,10 @@ const bookshelf = require('bookshelf')(knex);
 const Users = bookshelf.Model.extend({
   tableName: 'users'
 });
-
+const newPg = new pg.Pool();
 module.exports = {
   postFormOne: ((req, res) => {
-    pg.connect(process.env.DATABASE_URL, (err, client, done) => {
+    newPg.connect(process.env.DATABASE_URL, (err, client, done) => {
       console.log('in pg connect');
       let username = req.params.username;
       let password = req.params.password;
@@ -29,6 +29,7 @@ module.exports = {
             res.send(hash);
           })
         })
+        done();
       }) 
     })
   }),
