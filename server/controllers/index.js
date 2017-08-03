@@ -10,6 +10,7 @@ const knex = require('knex')({
     charset: 'utf8'
   }
 });
+console.log(process.env.DATABASE_URL);
 const bookshelf = require('bookshelf')(knex);
 const Users = bookshelf.Model.extend({
   tableName: 'users'
