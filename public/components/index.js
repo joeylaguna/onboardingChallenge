@@ -1,15 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App.js';
+import LandingPage from './LandingPage.js';
+import App from './App';
 import { BrowserRouter } from 'react-router-dom';
+import { Router, Route } from 'react-router';
 import { Provider } from 'react-redux';
-import store from './store';
+import store, { history } from './store';
 
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <Router history={history}>
+      <Route exact path='/' component={App}/>
+    </Router>
   </Provider>,
   document.getElementById('app')
 )

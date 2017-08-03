@@ -1,10 +1,12 @@
-function formOne(state = [], action) {
+function formOne(state = {}, action) {
   switch(action.type) {
     case 'UPDATE_FORM_ONE':
-      return [...state, {
-        formOneComplete: true
-      }];
+    console.log(state);
+    return Object.assign({}, state, {
+      formOneComplete: true
+    });
     default:
+      console.log('in here');
       return state;
   }
 }

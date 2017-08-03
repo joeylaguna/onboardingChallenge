@@ -5,8 +5,8 @@ import { browserHistory } from 'react-router';
 import rootReducer from './../reducers/index';
 
 const defaultState = {
-  formOne: false,
-  formTwo: false
+  formOne: {userName: '', password: '', formOneComplete: false},
+  formTwo: {formTwoComplete: false}
 }
 
 const enhancers = compose(
@@ -15,9 +15,7 @@ const enhancers = compose(
 
 const store = createStore(rootReducer, defaultState, enhancers);
 
-
 export const history = syncHistoryWithStore(createBrowserHistory(), store);
-
 export default store;
 
 
