@@ -40,6 +40,24 @@ export function completeFormOne(username, password, id) {
   }
 }
 
+export function addFormTwoInfo(newStuff, id) {
+  return dispatch => {
+    dispatch(addFormTwoInfoToDB(newStuff, id));
+  }
+}
+
+export function addFormTwoInfoToDB(newStuff, id) {
+  return dispatch => {
+    let firstName = newStuff.firstName;
+    let lastName = newStuff.lastName;
+    let phoneNumber = newStuff.phoneNumber;
+    axios.post(`/addFormTwo/${id}/${firstName}/${lastName}/${phoneNumber}`)
+      .then((response) => {
+        dispatch(completeFormTwo(firstName, lastName, phoneNumber));
+      });
+  }
+}
+
 export function completeFormTwo(firstName, lastName, phoneNumber) {
   return {
     type: 'UPDATE_FORM_TWO',

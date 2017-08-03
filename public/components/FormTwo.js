@@ -34,7 +34,11 @@ class FormTwo extends React.Component {
   }
   
   handleFormTwoSubmit() {
-    this.props.completeFormTwo(this.state.firstName, this.state.lastName, this.state.phoneNumber);
+    let obj = {};
+    obj.firstName = this.state.firstName;
+    obj.lastName = this.state.lastName;
+    obj.phoneNumber = this.state.phoneNumber;
+    this.props.addFormTwoInfo(obj, this.props.formOne.id.data);
   }
 
   render() {
@@ -56,7 +60,7 @@ class FormTwo extends React.Component {
             <input type='text' value={this.state.phoneNumber} onChange={this.handlePhoneNumberChange} />
           </label>
         </form>
-        <Link to ='/formThree' onClick={this.handleFormTwoSubmit}>Form 3</Link>
+        <div onClick={this.handleFormTwoSubmit}>Form 3</div>
       </div>
     )
   }

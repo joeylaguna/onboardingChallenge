@@ -33,6 +33,15 @@ app.post('/addUsers/:username/:password', (req, res) => {
   res.sendStatus(200);
 });
 
+app.post('/addFormTwo/:id/:firstName/:lastName/:phoneNumber', (req, res) => {
+  let id = req.params.id;
+  let firstName = req.params.firstName;
+  let lastName = req.params.lastName;
+  let phoneNumber = req.params.phoneNumber;
+  Users.forge().where({id: id}).save({firstname: firstName, lastname: lastName, phonenumber: phoneNumber}, {method: 'update'});
+  res.sendStatus(200);
+})
+
 app.get('/getUserID', (req, res) => {
   Users.forge().orderBy('id', 'DESC').fetch()
     .then((rows) => {
