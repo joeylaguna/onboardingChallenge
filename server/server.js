@@ -1,4 +1,6 @@
 const express = require('express');
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 const knex = require('knex')({
   client: 'pg',
   connection: {
@@ -13,9 +15,6 @@ const bookshelf = require('bookshelf')(knex);
 const Users = bookshelf.Model.extend({
   tableName: 'users'
 });
-const { Pool, Client } = require('pg');
-
-
 const app = express();
 app.set('port', (process.env.PORT || 5000));
 
@@ -24,12 +23,17 @@ app.use(express.static(__dirname + '/../public'));
 app.post('/addUsers/:username/:password', (req, res) => {
   console.log('fadfdad');
   let username = req.params.username;
-  let password = req.params.password
+  let password = req.params.password;
+  bcrypt.genSalt(saltRounds, (err, salt) => {
+    bcrypt.hash(password, salt, (err, hash) => {
+      new Users({username: username, password: hash}).save().then((model) => {
+        res.send(hash);
+      })
+    })
+  })
   console.log(`${username} ${password}`)
   //Users.save({username: req.params.username, password: req.params.password});
-  new Users({username: username, password: password}).save().then((model) => {
-    res.send(model.fetch());
-  })
+  
 });
 
 app.post('/addFormTwo/:id/:firstName/:lastName/:phoneNumber', (req, res) => {

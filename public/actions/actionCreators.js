@@ -13,7 +13,8 @@ export function addFormOneToDB(newStuff) {
     let password = newStuff.password;
     axios.post(`/addUsers/${username}/${password}`)
       .then((response) => {
-        dispatch(getUserID(username, password));
+        console.log(response);
+        dispatch(getUserID(username, response.data));
       })
       .catch((err) => {
         console.log('got an error');
