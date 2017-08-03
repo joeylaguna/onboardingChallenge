@@ -1,5 +1,6 @@
 import React from 'react';
 import FormOne from './FormOne.js';
+import Content from  './Content.js'
 import LandingPage from './LandingPage.js';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
@@ -19,6 +20,6 @@ export function mapDispatchToProps(dispatch) {
   return bindActionCreators(actionCreators, dispatch);
 }
 
-var App = withRouter(connect(mapStateToProps, mapDispatchToProps)(LandingPage));
+var App = withRouter(connect(mapStateToProps, mapDispatchToProps)(Content));
 
 export default App;
