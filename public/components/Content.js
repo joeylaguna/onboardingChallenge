@@ -9,13 +9,15 @@ import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 class Content extends React.Component {
   render() {
     return(
-      <main>
-        <Switch>
-          <Route exact path='/' component={LandingPage} />
-          <Route path ='/formTwo' component={FormTwo} />
-          <Route path ='/formThree' component={FormThree} />
-        </Switch>
-      </main>
+      <Router>
+        <main>
+          <Switch>
+            <Route exact path='/' component={LandingPage} />
+            <Route path ='/formTwo' component={FormTwo} />
+            <Route path ='/formThree' component={FormThree} />
+          </Switch>
+        </main>
+      </Router>
     )
   }
 }
