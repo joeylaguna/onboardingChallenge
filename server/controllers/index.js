@@ -1,4 +1,5 @@
 const bcrypt = require('bcrypt');
+const pg = require('pg');
 const saltRounds = 10;
 const knex = require('knex')({
   client: 'pg',
@@ -17,17 +18,19 @@ const Users = bookshelf.Model.extend({
 
 module.exports = {
   postFormOne: ((req, res) => {
-    console.log(process.env.DATABASE_URL);
-    let username = req.params.username;
-    let password = req.params.password;
-    let email = req.params.email;
-    bcrypt.genSalt(saltRounds, (err, salt) => {
-      bcrypt.hash(password, salt, (err, hash) => {
-        new Users({username: username, password: hash, email: email}).save().then((model) => {
-          res.send(hash);
+    pg.connect(process.env.DATABASE_URL, (err, client, done) => {
+      console.log('in pg connect');
+      let username = req.params.username;
+      let password = req.params.password;
+      let email = req.params.email;
+      bcrypt.genSalt(saltRounds, (err, salt) => {
+        bcrypt.hash(password, salt, (err, hash) => {
+          new Users({username: username, password: hash, email: email}).save().then((model) => {
+            res.send(hash);
+          })
         })
-      })
-    }) 
+      }) 
+    })
   }),
   postFormTwo: ((req, res) => {
     let id = req.params.id;
