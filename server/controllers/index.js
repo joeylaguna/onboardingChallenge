@@ -3,10 +3,10 @@ const saltRounds = 10;
 const knex = require('knex')({
   client: 'pg',
   connection: {
-    host: 'localhost',
-    user: 'admin',
-    password: '123',
-    database: 'Joey',
+    host: process.env.DATABASE_URL,
+    user: process.env.PG_USER,
+    password: process.env.PG_PASSWORD,
+    database: process.env.PG_DB,
     charset: 'utf8'
   }
 });
