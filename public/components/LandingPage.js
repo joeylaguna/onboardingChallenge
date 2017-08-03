@@ -7,23 +7,15 @@ import RaisedButton from 'material-ui/RaisedButton';
 class LandingPage extends React.Component {
   constructor() {
     super();
-    this.testButton = this.testButton.bind(this);
-  }
-
-  testButton() {
-    axios.get('/users/all')
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((err) => {
-        console.log(`error: ${err}`);
-      })
+    this.state = {
+      completed: false
+    }
   }
 
   render() {
     return(
       <div>
-        <h1>Click below to get started!</h1>
+        {this.props.formTwo.firstName !== '' ? <h1>Welcome aboard, {this.props.formTwo.firstName}! </h1>: <h1>Click below to get started!</h1>}
         <Link to='/formOne'><RaisedButton label='Get Started' primary={true} className='button'/></Link>
       </div>
     )
