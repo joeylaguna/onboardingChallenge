@@ -47,6 +47,7 @@ class FormOne extends React.Component {
     return(
         <div>
           <form>
+            <h1>Account Info</h1>
             <TextField value={this.state.username} onChange={this.handleUsernameUpdate} floatingLabelText='Username'/>
             <br/>
             <TextField value={this.state.password} onChange={this.handlePasswordUpdate} type='password' floatingLabelText='Password'/>

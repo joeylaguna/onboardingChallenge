@@ -48,6 +48,7 @@ class FormTwo extends React.Component {
     return(
       <div>
         <form>
+          <h1>User Info</h1>
           <TextField value={this.state.firstName} onChange={this.handleFirstNameChange} floatingLabelText='First Name' />
           <br/>
           <TextField value={this.state.lastName} onChange={this.handleLastNameChange} floatingLabelText='Last Name' />
