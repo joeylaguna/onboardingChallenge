@@ -10,12 +10,14 @@ class FormTwo extends React.Component {
     this.state = {
       firstName: '',
       lastName: '',
-      phoneNumber: ''
+      phoneNumber: '',
+      validPhoneNumber: false
     }
     this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
     this.handleLastNameChange = this.handleLastNameChange.bind(this);
     this.handlePhoneNumberChange = this.handlePhoneNumberChange.bind(this);
     this.handleFormTwoSubmit = this.handleFormTwoSubmit.bind(this);
+    this.validatePhoneNumber = this.validatePhoneNumber.bind(this);
   }
 
   handleFirstNameChange(e) {
@@ -34,6 +36,7 @@ class FormTwo extends React.Component {
     this.setState({
       phoneNumber: e.target.value
     });
+    this.validatePhoneNumber();
   }
   
   handleFormTwoSubmit() {
@@ -42,6 +45,21 @@ class FormTwo extends React.Component {
     obj.lastName = this.state.lastName;
     obj.phoneNumber = this.state.phoneNumber;
     this.props.addFormTwoInfo(obj, this.props.formOne.id.data);
+  }
+
+  validatePhoneNumber() {
+    var phoneRe = /^[2-9]\d{2}[2-9]\d{2}\d{4}$/;
+    var digits = this.refs.phoneNumber.getValue().replace(/\D/g, "");
+    console.log(phoneRe.test(digits));
+    if (phoneRe.test(digits)) {
+      this.setState({
+        validPhoneNumber: true
+      })
+    } else {
+      this.setState({
+        validPhoneNumber: false
+      })
+    }
   }
 
   render() {
@@ -53,9 +71,9 @@ class FormTwo extends React.Component {
           <br/>
           <TextField value={this.state.lastName} onChange={this.handleLastNameChange} floatingLabelText='Last Name' />
           <br/>
-          <TextField value={this.state.phoneNumber} onChange={this.handlePhoneNumberChange} floatingLabelText='Phone Number' />
+          <TextField ref='phoneNumber'value={this.state.phoneNumber} onChange={this.handlePhoneNumberChange} floatingLabelText='Phone Number' />
         </form>
-        <Link to='/formThree' onClick={this.handleFormTwoSubmit}><RaisedButton label='Save' primary={true} /></Link>
+        {this.state.validPhoneNumber && this.state.firstName.length > 0 && this.state.lastName.length > 0 ? <Link to='/formThree' onClick={this.handleFormTwoSubmit}><RaisedButton label='Save' primary={true} /></Link> : <RaisedButton label="Save" disabled={true} />}
       </div>
     )
   }

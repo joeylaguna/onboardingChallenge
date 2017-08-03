@@ -10,12 +10,14 @@ class FormOne extends React.Component {
     this.state = {
       username: '',
       password: '',
-      email: ''
+      email: '',
+      validEmail: false
     }
     this.handleUsernameUpdate = this.handleUsernameUpdate.bind(this);
     this.handlePasswordUpdate = this.handlePasswordUpdate.bind(this);
     this.handleEmailUpdate = this.handleEmailUpdate.bind(this);
     this.handleFormOneSubmit = this.handleFormOneSubmit.bind(this);
+    this.validateEmail = this.validateEmail.bind(this);
   }
   handleUsernameUpdate(e) {
     this.setState({
@@ -32,7 +34,8 @@ class FormOne extends React.Component {
   handleEmailUpdate(e) {
     this.setState({
       email: e.target.value
-    })
+    });
+    this.validateEmail();
   }
   
   handleFormOneSubmit() {
@@ -43,6 +46,19 @@ class FormOne extends React.Component {
     this.props.addToUsers(data);
   }
 
+  validateEmail() {  
+    const format = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    
+    if (this.refs.email.getValue().match(format)){  
+      this.setState({
+        validEmail: true
+      });
+    } else {
+      this.setState({
+        validEmail: false
+      })
+    }
+  }  
   render() {
     return(
         <div>
@@ -52,9 +68,9 @@ class FormOne extends React.Component {
             <br/>
             <TextField value={this.state.password} onChange={this.handlePasswordUpdate} type='password' floatingLabelText='Password'/>
             <br/>
-            <TextField value={this.state.email} onChange={this.handleEmailUpdate} floatingLabelText='Email'/>            
+            <TextField ref='email' value={this.state.email} onChange={this.handleEmailUpdate} floatingLabelText='Email'/>            
           </form>
-          <Link to='/formTwo' onClick={this.handleFormOneSubmit}><RaisedButton label='Save' primary={true} /></Link>
+          {this.state.validEmail && this.state.username.length > 0 && this.state.password.length > 0? <Link to='/formTwo' onClick={this.handleFormOneSubmit}><RaisedButton label='Save' primary={true} /></Link> : <RaisedButton label="Save" disabled={true} />}
         </div>
     )
   }
