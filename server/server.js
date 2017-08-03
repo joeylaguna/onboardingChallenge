@@ -28,9 +28,8 @@ app.post('/addUsers/:username/:password', (req, res) => {
   console.log(`${username} ${password}`)
   //Users.save({username: req.params.username, password: req.params.password});
   new Users({username: username, password: password}).save().then((model) => {
-    console.log('fdfd');
+    res.send(model.fetch());
   })
-  res.sendStatus(200);
 });
 
 app.post('/addFormTwo/:id/:firstName/:lastName/:phoneNumber', (req, res) => {
@@ -39,6 +38,16 @@ app.post('/addFormTwo/:id/:firstName/:lastName/:phoneNumber', (req, res) => {
   let lastName = req.params.lastName;
   let phoneNumber = req.params.phoneNumber;
   Users.forge().where({id: id}).save({firstname: firstName, lastname: lastName, phonenumber: phoneNumber}, {method: 'update'});
+  res.sendStatus(200);
+})
+
+app.post('/addFormThree/:id/:address/:city/:state/:zip', (req, res) => {
+  let id = req.params.id;
+  let address = req.params.address;
+  let city = req.params.city;
+  let state = req.params.state;
+  let zip = req.params.zip;
+  Users.forge().where({id: id}).save({address: address, city: city, state: state, zip: zip}, {method: 'update'});
   res.sendStatus(200);
 })
 

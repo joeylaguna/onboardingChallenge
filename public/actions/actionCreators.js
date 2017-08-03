@@ -66,3 +66,26 @@ export function completeFormTwo(firstName, lastName, phoneNumber) {
     phoneNumber
   }
 }
+
+export function addFormThreeInfo(newStuff, id) {
+  return dispatch => {
+    let address = newStuff.address;
+    let city = newStuff.city;
+    let state = newStuff.state;
+    let zip = newStuff.zip;
+    axios.post(`/addFormThree/${id}/${address}/${city}/${state}/${zip}`)
+      .then((response) => {
+        dispatch(completeFormThree(address, city, state, zip));
+      });
+  }
+}
+
+export function completeFormThree(address, city, state, zip) {
+  return {
+    type: 'UPDATE_FORM_THREE',
+    address,
+    city,
+    state,
+    zip
+  }
+}
