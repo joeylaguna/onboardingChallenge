@@ -60,7 +60,7 @@ class FormTwo extends React.Component {
             <input type='text' value={this.state.phoneNumber} onChange={this.handlePhoneNumberChange} />
           </label>
         </form>
-        <div onClick={this.handleFormTwoSubmit}>Form 3</div>
+        <Link to='/formThree' onClick={this.handleFormTwoSubmit}>Form 3</Link>
       </div>
     )
   }
