@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import RaisedButton from 'material-ui/RaisedButton';
+import TextField from 'material-ui/TextField';
 
 class FormThree extends React.Component {
   constructor(){
@@ -54,24 +56,15 @@ class FormThree extends React.Component {
     return(
       <div>
         <form>
-          <label>
-            Address:
-            <input type='text' value={this.state.address} onChange={this.handleAddressUpdate} />
-          </label>
-          <label>
-            City:
-            <input type='text'value={this.state.city} onChange={this.handleCityUpdate}/>
-          </label>
-          <label>
-            State:
-            <input type='text' value={this.state.state} onChange={this.handleStateUpdate}/>
-          </label>
-          <label>
-            Zip:
-            <input type='text' value={this.state.zip} onChange={this.handleZipUpdate}/>
-          </label>
+            <TextField value={this.state.address} onChange={this.handleAddressUpdate} floatingLabelText='Address' />
+            <br/>
+            <TextField value={this.state.city} onChange={this.handleCityUpdate} floatingLabelText='City' />
+            <br/>
+            <TextField value={this.state.state} onChange={this.handleStateUpdate} floatingLabelText='State' />
+            <br/>
+            <TextField value={this.state.zip} onChange={this.handleZipUpdate} floatingLabelText='Zip code' />
         </form>
-        <Link to='/' onClick={this.handleFormThreeSubmit}>Finish</Link>
+        <Link to='/' onClick={this.handleFormThreeSubmit}><RaisedButton label='Save' primary={true} /></Link>
       </div>
     )
   }

@@ -1,5 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
+
 
 class FormTwo extends React.Component {
   constructor() {
@@ -45,22 +48,13 @@ class FormTwo extends React.Component {
     return(
       <div>
         <form>
-          <label>
-            First Name:
-            <input type='text' value={this.state.firstName} onChange={this.handleFirstNameChange} />
-          </label>
-
-          <label>
-            Last Name:
-            <input type='text' value={this.state.lastName} onChange={this.handleLastNameChange} />
-          </label>
-
-          <label>
-            Telephone Number:
-            <input type='text' value={this.state.phoneNumber} onChange={this.handlePhoneNumberChange} />
-          </label>
+          <TextField value={this.state.firstName} onChange={this.handleFirstNameChange} floatingLabelText='First Name' />
+          <br/>
+          <TextField value={this.state.lastName} onChange={this.handleLastNameChange} floatingLabelText='Last Name' />
+          <br/>
+          <TextField value={this.state.phoneNumber} onChange={this.handlePhoneNumberChange} floatingLabelText='Phone Number' />
         </form>
-        <Link to='/formThree' onClick={this.handleFormTwoSubmit}>Form 3</Link>
+        <Link to='/formThree' onClick={this.handleFormTwoSubmit}><RaisedButton label='Save' primary={true} /></Link>
       </div>
     )
   }

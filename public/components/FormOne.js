@@ -1,6 +1,8 @@
 import React from 'react';
 import FormTwo from './FormTwo.js';
 import { Link } from 'react-router-dom';
+import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
 
 class FormOne extends React.Component {
   constructor() {
@@ -45,20 +47,13 @@ class FormOne extends React.Component {
     return(
         <div>
           <form>
-            <label>
-              Username:
-              <input value={this.state.username} onChange={this.handleUsernameUpdate} type='text'/>
-            </label>
-            <label>
-              Password:
-              <input value={this.state.password} onChange={this.handlePasswordUpdate} type='password'/>
-            </label>
-            <label>
-              Email:
-              <input value={this.state.email} onChange={this.handleEmailUpdate} type='email'/>
-            </label>
+            <TextField value={this.state.username} onChange={this.handleUsernameUpdate} floatingLabelText='Username'/>
+            <br/>
+            <TextField value={this.state.password} onChange={this.handlePasswordUpdate} type='password' floatingLabelText='Password'/>
+            <br/>
+            <TextField value={this.state.email} onChange={this.handleEmailUpdate} floatingLabelText='Email'/>            
           </form>
-          <Link to='/formTwo' onClick={this.handleFormOneSubmit}>Form Two</Link>
+          <Link to='/formTwo' onClick={this.handleFormOneSubmit}><RaisedButton label='Save' primary={true} /></Link>
         </div>
     )
   }
