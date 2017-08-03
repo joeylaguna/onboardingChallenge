@@ -10,7 +10,6 @@ const knex = require('knex')({
     charset: 'utf8'
   }
 });
-console.log(process.env.DATABASE_URL);
 const bookshelf = require('bookshelf')(knex);
 const Users = bookshelf.Model.extend({
   tableName: 'users'
@@ -18,6 +17,7 @@ const Users = bookshelf.Model.extend({
 
 module.exports = {
   postFormOne: ((req, res) => {
+    console.log(process.env.DATABASE_URL);
     let username = req.params.username;
     let password = req.params.password;
     let email = req.params.email;
