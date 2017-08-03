@@ -1,6 +1,8 @@
-export function completeFormOne() {
+export function completeFormOne(username, password) {
   return {
-    type: 'UPDATE_FORM_ONE'
+    type: 'UPDATE_FORM_ONE',
+    username,
+    password
   }
 }
 

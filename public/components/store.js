@@ -5,7 +5,7 @@ import { browserHistory } from 'react-router';
 import rootReducer from './../reducers/index';
 
 const defaultState = {
-  formOne: {userName: '', password: '', formOneComplete: false},
+  formOne: {username: '', password: '', formOneComplete: false},
   formTwo: {firstName: '', lastName:'', email:'', formTwoComplete: false},
   formThree: {address: '', city: '', state: '', zip: '', formThreeComplete: false}
 }
