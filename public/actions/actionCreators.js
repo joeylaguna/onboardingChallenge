@@ -11,7 +11,7 @@ export function addFormOneToDB(newStuff) {
     let username = newStuff.username;
     let password = newStuff.password;
     let email = newStuff.email
-    axios.post(`/addjUsers/${username}/${password}/${email}`)
+    axios.post(`/addUsers/${username}/${password}/${email}`)
       .then((response) => {
         dispatch(getUserID(username, response.data, email));
       })
