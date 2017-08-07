@@ -23,8 +23,8 @@ module.exports = {
     bcrypt.genSalt(saltRounds, (err, salt) => {
       bcrypt.hash(password, salt, (err, hash) => {
         new Users({username: username, password: hash, email: email}).save().then((model) => {
-          res.send(hash);
-        })
+          res.send(model ? model : new Error('error saving to DB'));
+        });
       })
     }) 
   }),
@@ -33,8 +33,9 @@ module.exports = {
     let firstName = req.params.firstName;
     let lastName = req.params.lastName;
     let phoneNumber = req.params.phoneNumber;
-    Users.forge().where({id: id}).save({firstname: firstName, lastname: lastName, phonenumber: phoneNumber}, {method: 'update'});
-    res.sendStatus(200);
+    Users.forge().where({id: id}).save({firstname: firstName, lastname: lastName, phonenumber: phoneNumber}, {method: 'update'}).then((model) => {
+      res.send(model ? model : new Error('error saving to DB'));
+    });
   }),
   postFormThree: ((req, res) => {
     let id = req.params.id;
@@ -42,8 +43,9 @@ module.exports = {
     let city = req.params.city;
     let state = req.params.state;
     let zip = req.params.zip;
-    Users.forge().where({id: id}).save({address: address, city: city, state: state, zip: zip}, {method: 'update'});
-    res.sendStatus(200);
+    Users.forge().where({id: id}).save({address: address, city: city, state: state, zip: zip}, {method: 'update'}).then((model) => {
+      res.send(model ? model : new Error('error saving to DB'));
+    });
   }),
   getUserID: ((req, res) => {
     Users.forge().orderBy('id', 'DESC').fetch()

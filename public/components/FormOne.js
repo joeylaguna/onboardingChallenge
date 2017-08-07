@@ -70,7 +70,7 @@ class FormOne extends React.Component {
             <br/>
             <TextField ref='email' value={this.state.email} onChange={this.handleEmailUpdate} floatingLabelText='Email'/>            
           </form>
-          {this.state.validEmail && this.state.username.length > 0 && this.state.password.length > 0? <Link to='/formTwo' onClick={this.handleFormOneSubmit}><RaisedButton label='Save' primary={true} /></Link> : <RaisedButton label="Save" disabled={true} />}
+          {this.state.validEmail && this.state.username.length > 0 && this.state.password.length > 0 ? <Link to='/formTwo' onClick={this.handleFormOneSubmit}><RaisedButton label='Save' primary={true} /></Link> : <RaisedButton label="Save" disabled={true} />}
         </div>
     )
   }

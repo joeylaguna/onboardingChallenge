@@ -65,7 +65,7 @@ class FormThree extends React.Component {
             <br/>
             <TextField value={this.state.zip} onChange={this.handleZipUpdate} floatingLabelText='Zip code' />
         </form>
-        {this.state.address.length > 0 && this.state.city.length > 0 && this.state.state.length > 0 && this.state.zip.length > 0 ? <Link to='/' onClick={this.handleFormThreeSubmit}><RaisedButton label='Save' primary={true} /></Link> : <RaisedButton label="Save" disabled={true} />}
+        {this.state.address.length > 0 && this.state.city.length > 0 && this.state.state.length > 0 && this.state.zip.length > 0 && this.props.formOne.formOneComplete && this.props.formTwo.formTwoComplete ? <Link to='/' onClick={this.handleFormThreeSubmit}><RaisedButton label='Save' primary={true} /></Link> : <RaisedButton label="Save" disabled={true} />}
       </div>
     )
   }
