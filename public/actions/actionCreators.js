@@ -11,13 +11,12 @@ export function addFormOneToDB(newStuff) {
     let username = newStuff.username;
     let password = newStuff.password;
     let email = newStuff.email
-    axios.post(`/addUsers/${username}/${password}/${email}`)
+    axios.post(`/addjUsers/${username}/${password}/${email}`)
       .then((response) => {
         dispatch(getUserID(username, response.data, email));
       })
       .catch((err) => {
-        console.log('got an error');
-        console.log(err);
+        dispatch(failFormOne());
       })
   }
 }
@@ -41,6 +40,12 @@ export function completeFormOne(username, password, id, email) {
   }
 }
 
+export function failFormOne() {
+  return {
+    type: 'FAIL_FORM_ONE'
+  }
+}
+
 export function addFormTwoInfo(newStuff, id) {
   return dispatch => {
     dispatch(addFormTwoInfoToDB(newStuff, id));
@@ -54,8 +59,11 @@ export function addFormTwoInfoToDB(newStuff, id) {
     let phoneNumber = newStuff.phoneNumber;
     axios.post(`/addFormTwo/${id}/${firstName}/${lastName}/${phoneNumber}`)
       .then((response) => {
-        dispatch(completeFormTwo(firstName, lastName, phoneNumber));
-      });
+        response.data.name === 'error' ? dispatch(failFormTwo) : dispatch(completeFormTwo(firstName, lastName, phoneNumber));
+      })
+      .catch((error) =>{
+        dispatch(failFormTwo);
+      })
   }
 }
 
@@ -68,6 +76,12 @@ export function completeFormTwo(firstName, lastName, phoneNumber) {
   }
 }
 
+export function failFormTwo() {
+  return {
+    tyle: 'FAIL_FORM_TWO'
+  }
+}
+
 export function addFormThreeInfo(newStuff, id) {
   return dispatch => {
     let address = newStuff.address;
@@ -77,7 +91,10 @@ export function addFormThreeInfo(newStuff, id) {
     axios.post(`/addFormThree/${id}/${address}/${city}/${state}/${zip}`)
       .then((response) => {
         dispatch(completeFormThree(address, city, state, zip));
-      });
+      })
+      .catch((err) =>{
+        dispatch(failFormThree);
+      })
   }
 }
 
@@ -88,5 +105,11 @@ export function completeFormThree(address, city, state, zip) {
     city,
     state,
     zip
+  }
+}
+
+export function failFormThree() {
+  return {
+    type: 'FAIL_FORM_THREE'
   }
 }
