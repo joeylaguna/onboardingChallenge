@@ -12,6 +12,8 @@ function formThree(state = {}, action) {
         state: userState,
         zip: zip
       });
+    case 'FAIL_FORM_THREE' :
+      return state;
     default:
       return state;
   }

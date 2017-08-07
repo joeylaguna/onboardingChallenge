@@ -10,6 +10,8 @@ function formTwo(state = {}, action) {
         phoneNumber: phoneNumber,
         formTwoComplete: true
       });
+    case 'FAIL_FORM_TWO':
+      return state;
     default:
       return state;
   }

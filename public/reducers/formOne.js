@@ -12,6 +12,8 @@ function formOne(state = {}, action) {
         id: action.id,
         email: email
       });
+    case 'FAIL_FORM_ONE':
+      return state;
     default:
       return state;
   }
